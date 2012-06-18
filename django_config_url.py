@@ -4,7 +4,10 @@ import os
 import urlparse
 
 
-# loop backend.* modules and get TYPES, add them to netloc here
+backends = []
+# loop backend.* modules and import?
+
+# get backend TYPES, add them to netloc here
 urlparse.uses_netloc.append('db')
 
 DEFAULT_ENV = 'CACHE_URL'
