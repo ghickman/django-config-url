@@ -12,3 +12,15 @@ OPTIONS = (
     'HOST',
     'PORT'
 )
+
+DEFAULT = 'sqlite://'
+
+def build_vars(url):
+     return {
+        'NAME': url.path[1:],
+        'USER': url.username,
+        'PASSWORD': url.password,
+        'HOST': url.hostname,
+        'PORT': url.port,
+    }
+

@@ -10,3 +10,11 @@ OPTIONS = (
     'LOCATION',
     'PREFIX'
 )
+
+DEFAULT = 'locmem://'
+
+def build_vars(url):
+    if url.scheme == 'file':
+        return {'LOCATION': url.path}
+    return {'LOCATION': url.netloc, 'PREFIX': url.path[1:]}
+
