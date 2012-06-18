@@ -30,28 +30,10 @@ def config(backend, default=None):
 
 def parse(url, backend):
     """Parses a URL."""
-    config = {}
-
     url = urlparse.urlparse(url)
 
-    # CACHE
+    config = {}
     config['BACKEND'] = backend[url.scheme]
-    if url.scheme == 'file':
-        config['LOCATION'] = url.path
-        return config
-
-    config['LOCATION'] = url.netloc
-    config['PREFIX'] = url.path[1:]
-
-    # DATABASE
-    config.update({
-        'NAME': url.path[1:],
-        'USER': url.username,
-        'PASSWORD': url.password,
-        'HOST': url.hostname,
-        'PORT': url.port,
-    })
-
+    config.update(backend.build_vars(url))
     return config
-
 
