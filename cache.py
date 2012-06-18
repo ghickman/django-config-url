@@ -6,3 +6,7 @@ TYPES = {
     'memcached': 'django.core.cache.backends.memcached.PyLibMCCache'
 }
 
+OPTIONS = (
+    'LOCATION',
+    'PREFIX'
+)
