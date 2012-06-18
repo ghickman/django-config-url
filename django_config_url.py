@@ -12,14 +12,19 @@ urlparse.uses_netloc.append('db')
 
 DEFAULT_ENV = 'CACHE_URL'
 
-def config(env=DEFAULT_ENV, default='locmem://'):
+def config(backend, default=None):
+# def config(env=DEFAULT_ENV, default='locmem://'):
     """Returns configured CACHES dictionary from CACHE_URL"""
+    var = '{0}_url'.format(backend).upper()
+
+    # want to get the default for the backend here
+    default = backends[backend].DEFAULT
     config = {}
 
-    s = os.environ.get(env, default)
+    s = os.environ.get(var, default)
 
     if s:
-        config = parse(s)
+        config = parse(s, backend)
 
     return config
 
